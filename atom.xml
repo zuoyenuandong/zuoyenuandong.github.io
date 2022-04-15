@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Hexo</title>
+  
+  
+  <link href="http://example.com/atom.xml" rel="self"/>
+  
+  <link href="http://example.com/"/>
+  <updated>2022-04-14T16:44:22.256Z</updated>
+  <id>http://example.com/</id>
+  
+  <author>
+    <name>John Doe</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown</title>
+    <link href="http://example.com/2022/04/15/markdown/"/>
+    <id>http://example.com/2022/04/15/markdown/</id>
+    <published>2022-04-14T16:44:07.000Z</published>
+    <updated>2022-04-14T16:44:22.256Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul><li>**<code>#</code>**表示标题</li><li>在标题底下加上任意个 <strong><code>=</code></strong> 代表一级标题 <strong><code>-</code></strong> 代表二级标题</li></ul><hr><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul><li>无序列表用 <strong><code>-</code></strong> <strong><code>+</code></strong> <strong><code>*</code></strong> 作为列表标记</li><li>有序列表用数字加英文句点 <strong>.</strong> 来表示</li></ul><hr><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>​<strong><code>&gt;</code></strong> 引用标题、列表、代码块、分割线</p><hr><h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><ul><li>两个 <strong><code>*</code></strong> 或 <strong><code>_</code></strong>  代表加粗 </li><li>一个 <strong><code>*</code></strong> 或 <strong><code>_</code></strong>  代表斜体</li><li>两个**<code>~</code>** 代表删除</li></ul><hr><h3 id="图片与链接"><a href="#图片与链接" class="headerlink" title="图片与链接"></a>图片与链接</h3><p><strong>图片</strong>     <strong><code>![图片文本（可忽略）]() </code></strong></p><p><strong>链接</strong>     <strong><code>[链接文本](链接地址)</code></strong></p><hr><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>行内代码用<strong>` 代码`</strong> 表示</p><p>代码块用四个空格或者**&#96;&#96;&#96;** 表示</p><p>​&#96;&#96;&#96;</p><p>​代码</p><p>​&#96;&#96;&#96;</p><hr><h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>三个以上的<code>*</code>、<code>-</code>、<code>_</code> 来表示分割线</p><hr><h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><p>在行尾添加两个空格加回车表示换行</p><hr><h3 id="Markdown-支持html语法"><a href="#Markdown-支持html语法" class="headerlink" title="Markdown 支持html语法"></a>Markdown 支持html语法</h3><hr><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p><strong><code>\</code></strong> 代表转译，用来输入被Markdown占用的特殊字符</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;标题&quot;&gt;&lt;a href=&quot;#标题&quot; class=&quot;headerlink&quot; title=&quot;标题&quot;&gt;&lt;/a&gt;标题&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;**&lt;code&gt;#&lt;/code&gt;**表示标题&lt;/li&gt;
+&lt;li&gt;在标题底下加上任意个 &lt;strong&gt;&lt;code&gt;=&lt;/code</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hexo</title>
+    <link href="http://example.com/2022/04/15/hexo/"/>
+    <id>http://example.com/2022/04/15/hexo/</id>
+    <published>2022-04-14T16:41:57.000Z</published>
+    <updated>2022-04-14T16:43:03.720Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装NodeJs"><a href="#安装NodeJs" class="headerlink" title="安装NodeJs"></a>安装NodeJs</h2><h3 id="检查是否安装完整"><a href="#检查是否安装完整" class="headerlink" title="检查是否安装完整"></a>检查是否安装完整</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node -v</span><br><span class="line">npm -v</span><br></pre></td></tr></table></figure><h3 id="安装cnpm"><a href="#安装cnpm" class="headerlink" title="安装cnpm"></a>安装cnpm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g cnpm --registry=https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cnpm install -g hexo-cli</span><br></pre></td></tr></table></figure><h3 id="初始化hexo"><a href="#初始化hexo" class="headerlink" title="初始化hexo"></a>初始化hexo</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure><h3 id="启动hexo"><a href="#启动hexo" class="headerlink" title="启动hexo"></a>启动hexo</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s #hexo server</span><br></pre></td></tr></table></figure><h3 id="编写文章"><a href="#编写文章" class="headerlink" title="编写文章"></a>编写文章</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n file # hexo new file</span><br></pre></td></tr></table></figure><blockquote><p>文件输出路径  <strong>.&#x2F;source&#x2F;_posts</strong></p></blockquote><h3 id="文件更新"><a href="#文件更新" class="headerlink" title="文件更新"></a>文件更新</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd 初始化hexo的文件夹</span><br><span class="line">hexo clean</span><br><span class="line">hexo g #hexo generate</span><br></pre></td></tr></table></figure><h3 id="部署远程服务器"><a href="#部署远程服务器" class="headerlink" title="部署远程服务器"></a>部署远程服务器</h3><p><strong>新建仓库名称</strong> <code> 用户名.github.io</code></p><p><strong>安装插件</strong> <code>cnpm install --save hexo-deployer-git</code></p><p><strong>配置文件(_config.yml)</strong> </p><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">deploy:</span><br><span class="line">type:git</span><br><span class="line">repo:</span><br><span class="line">gitee: 仓库地址 </span><br><span class="line">github: 仓库地址</span><br><span class="line">branch:master</span><br></pre></td></tr></table></figure><p><strong>同步服务器</strong></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d # hexo deploy</span><br></pre></td></tr></table></figure><h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><p> <strong><a href="https://www.zhihu.com/question/24422335/answers/updated">主题地址</a></strong> </p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cd 项目目录</span><br><span class="line">git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia</span><br><span class="line">vim _config.yml</span><br><span class="line">theme:yilia</span><br><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;安装NodeJs&quot;&gt;&lt;a href=&quot;#安装NodeJs&quot; class=&quot;headerlink&quot; title=&quot;安装NodeJs&quot;&gt;&lt;/a&gt;安装NodeJs&lt;/h2&gt;&lt;h3 id=&quot;检查是否安装完整&quot;&gt;&lt;a href=&quot;#检查是否安装完整&quot; class=&quot;head</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>git</title>
+    <link href="http://example.com/2022/04/14/git/"/>
+    <id>http://example.com/2022/04/14/git/</id>
+    <published>2022-04-14T11:43:51.000Z</published>
+    <updated>2022-04-14T11:55:42.959Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Git环境配置"><a href="#Git环境配置" class="headerlink" title="Git环境配置"></a>Git环境配置</h2><p>​<strong>查看git用户名</strong> <code>git config user.name</code></p><p>​<strong>查看git密码</strong>  <code>git congfig user.password</code></p><p>​<strong>配置git用户名</strong>  <code>git config --global user.name &quot;新的用户名&quot;</code></p><p>​<strong>配置git邮箱</strong>  <code>git config --global user.email &quot;新的邮箱&quot;</code></p><p>​<strong>查看系统配置</strong>  <code>git config --system --list</code></p><p>​<strong>查看用户配置</strong> <code>git config --global --lsit</code></p><h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">remote directory</span><br><span class="line"> git push        git pull</span><br><span class="line">     history</span><br><span class="line"> git commit      git reset</span><br><span class="line">     stage</span><br><span class="line"> git add files   git chectout</span><br><span class="line">     working directory</span><br></pre></td></tr></table></figure><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git status [filename] : 查看指定文件状态</span><br><span class="line">git status : 查看所有文件状态</span><br><span class="line">git add . 添加所有文件到暂存区</span><br><span class="line">git commit -m ：提交暂存区的文件到本地仓库</span><br></pre></td></tr></table></figure><h2 id="Git配置SSH公钥"><a href="#Git配置SSH公钥" class="headerlink" title="Git配置SSH公钥"></a>Git配置SSH公钥</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\Users\user\.ssh</span><br><span class="line">ssh-keygen -t rsa <span class="comment">#生成密钥</span></span><br></pre></td></tr></table></figure><p><strong>将生成的id_rsa.pub文件里的内容复制到码云中</strong></p><p><img src="F:\typora\img\1649930110699.png" alt="1649930110699"></p><h2 id="创建Git项目"><a href="#创建Git项目" class="headerlink" title="创建Git项目"></a>创建Git项目</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件夹 </span><br><span class="line">git init</span><br><span class="line">git <span class="built_in">clone</span> url</span><br></pre></td></tr></table></figure><h2 id="DOS-和Shell-区别"><a href="#DOS-和Shell-区别" class="headerlink" title="DOS 和Shell 区别"></a>DOS 和Shell 区别</h2><table><thead><tr><th>功能</th><th>cmd</th><th>linux</th></tr></thead><tbody><tr><td>列举文件</td><td>cls</td><td>clear</td></tr><tr><td>创建目录</td><td>mkdir</td><td>mkdir</td></tr><tr><td>删除目录</td><td>rd</td><td>rmdir</td></tr><tr><td>在屏幕打印文件内容</td><td>type</td><td>cat</td></tr><tr><td>删除文件</td><td>del</td><td>rm</td></tr><tr><td>移动文件</td><td>move</td><td>mv</td></tr><tr><td>清除屏幕</td><td>cls</td><td>clear</td></tr><tr><td>列举文件</td><td>dir</td><td>ls</td></tr></tbody></table>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Git环境配置&quot;&gt;&lt;a href=&quot;#Git环境配置&quot; class=&quot;headerlink&quot; title=&quot;Git环境配置&quot;&gt;&lt;/a&gt;Git环境配置&lt;/h2&gt;&lt;p&gt;​	&lt;strong&gt;查看git用户名&lt;/strong&gt; &lt;code&gt;git config user.</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://example.com/2022/04/14/hello-world/"/>
+    <id>http://example.com/2022/04/14/hello-world/</id>
+    <published>2022-04-14T11:18:24.174Z</published>
+    <updated>2022-04-14T11:18:24.174Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
