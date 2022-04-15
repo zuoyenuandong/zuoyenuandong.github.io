@@ -1,5 +1,5 @@
-http://example.com/manifest.json
 http://example.com/2022/04/15/hexo/
+http://example.com/manifest.json
 http://example.com/myself/index.html
 http://example.com/about/index.html
 http://example.com/categories/index.html
