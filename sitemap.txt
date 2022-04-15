@@ -1,3 +1,5 @@
+http://example.com/2022/04/15/markdown/
+http://example.com/2022/04/14/git/
 http://example.com/2022/04/15/hexo/
 http://example.com/manifest.json
 http://example.com/myself/index.html
@@ -7,9 +9,9 @@ http://example.com/link/index.html
 http://example.com/timeline/index.html
 http://example.com/messageboard/index.html
 http://example.com/tags/index.html
-http://example.com/2022/04/15/markdown/
-http://example.com/2022/04/14/git/
-http://example.com/2022/04/14/hello-world/
 http://example.com/
-http://example.com/tags/%E7%AC%94%E8%AE%B0/
-http://example.com/categories/demo/
+http://example.com/tags/blog/
+http://example.com/tags/linux/
+http://example.com/categories/note/
+http://example.com/categories/%E8%BD%AF%E4%BB%B6/
+http://example.com/categories/%E8%BD%AF%E4%BB%B6/java/
