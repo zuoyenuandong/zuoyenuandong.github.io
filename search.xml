@@ -4,12 +4,47 @@
   
     
     <entry>
+      <title>Redis</title>
+      <link href="/2022/04/16/Redis/"/>
+      <url>/2022/04/16/Redis/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Redis"><a href="#Redis" class="headerlink" title="Redis"></a>Redis</h2><h3 id="各个类型的数据库"><a href="#各个类型的数据库" class="headerlink" title="各个类型的数据库"></a>各个类型的数据库</h3><h4 id="基本信息"><a href="#基本信息" class="headerlink" title="基本信息"></a>基本信息</h4><p>关系型数据库 MySQL Oracle</p><h4 id="详细信息"><a href="#详细信息" class="headerlink" title="详细信息"></a>详细信息</h4><p>文档型数据库 MongoDB</p><h4 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h4><p>分布式文件系统 FastDFS</p><ul><li>淘宝    TFS</li><li>Google  GFS</li><li>Hadoop  HDFS</li><li>阿里云   oss</li></ul><h4 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h4><p>搜索引擎 solr、elasticsearch、ISearch</p><h4 id="热门的波段信息"><a href="#热门的波段信息" class="headerlink" title="热门的波段信息"></a>热门的波段信息</h4><p>内存数据库 Redis、Tair、Memache</p><h4 id="外部接口"><a href="#外部接口" class="headerlink" title="外部接口"></a>外部接口</h4><p>三方应用</p><h3 id="Nosql的四大分类"><a href="#Nosql的四大分类" class="headerlink" title="Nosql的四大分类"></a>Nosql的四大分类</h3>]]></content>
+      
+      
+      <categories>
+          
+          <category> 软件 </category>
+          
+          <category> java </category>
+          
+          <category> senior </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>markdown</title>
       <link href="/2022/04/15/markdown/"/>
       <url>/2022/04/15/markdown/</url>
       
         <content type="html"><![CDATA[<h3 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h3><ul><li><code>#</code>表示标题</li><li>在标题底下加上任意个 <strong><code>=</code></strong> 代表一级标题 <strong><code>-</code></strong> 代表二级标题</li></ul><hr><h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><ul><li>无序列表用 <strong><code>-</code></strong> <strong><code>+</code></strong> <strong><code>*</code></strong> 作为列表标记</li><li>有序列表用数字加英文句点 <strong>.</strong> 来表示</li></ul><hr><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>​<strong><code>&gt;</code></strong> 引用标题、列表、代码块、分割线</p><hr><h3 id="强调"><a href="#强调" class="headerlink" title="强调"></a>强调</h3><ul><li>两个 <strong><code>*</code></strong> 或 <strong><code>_</code></strong>  代表加粗 </li><li>一个 <strong><code>*</code></strong> 或 <strong><code>_</code></strong>  代表斜体</li><li>两个**<code>~</code>** 代表删除</li></ul><hr><h3 id="图片与链接"><a href="#图片与链接" class="headerlink" title="图片与链接"></a>图片与链接</h3><p><strong>图片</strong>     <strong><code>![图片文本（可忽略）]() </code></strong></p><p><strong>链接</strong>     <strong><code>[链接文本](链接地址)</code></strong></p><hr><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p>行内代码用<strong>` 代码`</strong> 表示</p><p>代码块用四个空格或者&#96;&#96;&#96; 表示</p><p>`&#96;&#96;</p><p>代码 </p><p>`&#96;&#96;</p><hr><h3 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h3><p>三个以上的<code>*</code>、<code>-</code>、<code>_</code> 来表示分割线</p><hr><h3 id="换行"><a href="#换行" class="headerlink" title="换行"></a>换行</h3><p>在行尾添加两个空格加回车表示换行</p><hr><h3 id="Markdown-支持html语法"><a href="#Markdown-支持html语法" class="headerlink" title="Markdown 支持html语法"></a>Markdown 支持html语法</h3><hr><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p><strong><code>\</code></strong> 代表转译，用来输入被Markdown占用的特殊字符</p><p><strong>半方大空格：</strong>  <code>  &amp;ensp</code>  <code>&amp;#8194</code></p><p><strong>全方大空格:</strong>  <code> &amp;emsp</code>  <code> &amp;#8195</code></p><p><strong>不断行的空白格:</strong>  <code> &amp;nbsp</code>  <code> &amp;#160</code></p><figure class="highlight js"><table><tr><td class="code"><pre><span class="line">p&#123;</span><br><span class="line">text-<span class="attr">indent</span>: 2em; <span class="comment">/*首行缩进*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
       
+      
+      <categories>
+          
+          <category> note </category>
+          
+      </categories>
       
       
         <tags>
