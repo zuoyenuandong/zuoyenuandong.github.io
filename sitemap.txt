@@ -1,4 +1,4 @@
-http://example.com/2022/04/16/%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB/
+http://example.com/2022/04/16/%E9%93%B6%E8%A1%8C%E5%8D%A1%E8%AF%86%E5%88%AB/
 http://example.com/2022/04/16/Redis/
 http://example.com/2022/04/14/git/
 http://example.com/2022/04/15/markdown/
