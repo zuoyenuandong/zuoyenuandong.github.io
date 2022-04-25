@@ -17,7 +17,7 @@ http://example.com/tags/linux/
 http://example.com/tags/blog/
 http://example.com/tags/opencv/
 http://example.com/categories/Java/
-http://example.com/categories/note/
 http://example.com/categories/Java/senior/
+http://example.com/categories/note/
 http://example.com/categories/Python/
 http://example.com/categories/Python/opencv/
