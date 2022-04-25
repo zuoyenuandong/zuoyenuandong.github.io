@@ -4,7 +4,7 @@
   <url>
     <loc>http://example.com/2022/04/16/%E8%BD%A6%E7%89%8C%E8%AF%86%E5%88%AB/</loc>
     
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -121,36 +121,36 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://example.com/tags/linux/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <loc>http://example.com/tags/Redis/</loc>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://example.com/tags/Redis/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <loc>http://example.com/tags/linux/</loc>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/blog/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/opencv/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -159,35 +159,35 @@
   
   <url>
     <loc>http://example.com/categories/Java/</loc>
-    <lastmod>2022-04-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/Java/senior/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/note/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/Java/senior/</loc>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Python/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Python/opencv/</loc>
-    <lastmod>2022-04-16</lastmod>
+    <lastmod>2022-04-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
