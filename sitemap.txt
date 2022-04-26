@@ -1,3 +1,5 @@
+http://example.com/2022/04/26/springboot%E7%94%B5%E5%95%86%E9%A1%B9%E7%9B%AE/
+http://example.com/2022/04/25/springboot/
 http://example.com/2022/04/16/%E9%93%B6%E8%A1%8C%E5%8D%A1%E8%AF%86%E5%88%AB/
 http://example.com/2022/04/16/Redis/
 http://example.com/2022/04/14/git/
@@ -15,9 +17,11 @@ http://example.com/
 http://example.com/tags/Redis/
 http://example.com/tags/linux/
 http://example.com/tags/blog/
+http://example.com/tags/Java/
 http://example.com/tags/opencv/
+http://example.com/tags/python/
 http://example.com/categories/Java/
-http://example.com/categories/Java/senior/
 http://example.com/categories/note/
+http://example.com/categories/Java/senior/
 http://example.com/categories/Python/
 http://example.com/categories/Python/opencv/
