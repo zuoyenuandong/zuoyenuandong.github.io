@@ -4,7 +4,16 @@
   <url>
     <loc>http://example.com/2022/07/10/spriongcloud/</loc>
     
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-26</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/2022/04/16/Redis/</loc>
+    
+    <lastmod>2022-07-20</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -23,15 +32,6 @@
     <loc>http://example.com/2022/07/06/nginx/</loc>
     
     <lastmod>2022-07-07</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/2022/04/16/Redis/</loc>
-    
-    <lastmod>2022-07-05</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -220,7 +220,7 @@
 
   <url>
     <loc>http://example.com/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -228,49 +228,49 @@
   
   <url>
     <loc>http://example.com/tags/Redis/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/linux/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/docker/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/blog/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/Java/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/opencv/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/tags/python/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
@@ -279,49 +279,49 @@
   
   <url>
     <loc>http://example.com/categories/Java/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/%E8%BF%90%E7%BB%B4/</loc>
-    <lastmod>2022-07-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://example.com/categories/note/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Java/senior/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://example.com/categories/note/</loc>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/%E8%BF%90%E7%BB%B4/docker/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Python/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
     <loc>http://example.com/categories/Python/opencv/</loc>
-    <lastmod>2022-07-16</lastmod>
+    <lastmod>2022-07-31</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

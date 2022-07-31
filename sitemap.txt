@@ -1,7 +1,7 @@
 http://example.com/2022/07/10/spriongcloud/
+http://example.com/2022/04/16/Redis/
 http://example.com/2022/07/08/elasticsearch/
 http://example.com/2022/07/06/nginx/
-http://example.com/2022/04/16/Redis/
 http://example.com/2022/06/18/springboot-03/
 http://example.com/2022/06/08/springboot-02/
 http://example.com/2022/04/25/springboot-01/
@@ -32,8 +32,8 @@ http://example.com/tags/opencv/
 http://example.com/tags/python/
 http://example.com/categories/Java/
 http://example.com/categories/%E8%BF%90%E7%BB%B4/
-http://example.com/categories/note/
 http://example.com/categories/Java/senior/
+http://example.com/categories/note/
 http://example.com/categories/%E8%BF%90%E7%BB%B4/docker/
 http://example.com/categories/Python/
 http://example.com/categories/Python/opencv/
