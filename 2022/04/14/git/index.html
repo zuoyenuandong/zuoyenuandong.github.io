@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>git | zuoyenuandong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Git常用命令以及一些bash和Dos命令区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git">
+<meta property="og:url" content="http://zuoyenuandong.github.io/2022/04/14/git/index.html">
+<meta property="og:site_name" content="zuoyenuandong">
+<meta property="og:description" content="Git常用命令以及一些bash和Dos命令区别">
+<meta property="og:locale">
+<meta property="og:image" content="http://zuoyenuandong.github.io/pic/git/p1.png">
+<meta property="og:image" content="http://zuoyenuandong.github.io/pic/git/gitversion.png">
+<meta property="og:image" content="http://zuoyenuandong.github.io/pic/git/create.png">
+<meta property="og:image" content="http://zuoyenuandong.github.io/pic/git/gitcommit.png">
+<meta property="og:image" content="http://zuoyenuandong.github.io/pic/git/gitpush1.png">
+<meta property="og:image" content="http://zuoyenuandong.github.io/pic/git/gitpush2.png">
+<meta property="og:image" content="http://zuoyenuandong.github.io/pic/git/clone.png">
+<meta property="article:published_time" content="2022-04-14T11:43:51.000Z">
+<meta property="article:modified_time" content="2022-10-26T14:23:51.009Z">
+<meta property="article:author" content="kuang">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://zuoyenuandong.github.io/pic/git/p1.png">
+  
+    <link rel="alternate" href="/atom.xml" title="zuoyenuandong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zuoyenuandong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zuoyenuandong.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-git" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/14/git/" class="article-date">
+  <time class="dt-published" datetime="2022-04-14T11:43:51.000Z" itemprop="datePublished">2022-04-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>►<a class="article-category-link" href="/categories/Java/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      git
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Git环境配置"><a href="#Git环境配置" class="headerlink" title="Git环境配置"></a>Git环境配置</h2><p>​	<strong>配置git用户名</strong>  <code>git config --global user.name &quot;用户名&quot;</code></p>
+<p>​	<strong>配置git邮箱</strong>  <code>git config --global user.email &quot;邮箱&quot;</code></p>
+<p>   **查看git用户名  ** <code>git config user.name</code></p>
+<p>​	<strong>查看git密码</strong>  <code>git congfig user.email</code></p>
+<p>​	<strong>查看系统配置</strong>  <code>git config --system --list</code></p>
+<p>​	<strong>查看用户配置</strong> <code>git config --global --lsit</code></p>
+<h2 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h2><p><code> git init</code> 创建本地仓库</p>
+<p><code> git add</code>添加文件到暂存区</p>
+<p><code> git status [filename]</code>查看指定文件状态</p>
+<p><code> git status</code>查看所有文件状态</p>
+<p><code> git commit -m &quot;注释内容&quot;</code>提交暂存区的文件到本地仓库</p>
+<p><code>git log</code>查看提交记录</p>
+<p>​		<code>--all</code> 显示所有分支<br>​		<code>--pretty=oneline</code> 将提交信息显示为一行<br>​		<code>--abbrev-commit</code> 使得输出的commitedID的内容更简短<br>​		<code>--graph</code> 以图形的形式显示</p>
+<p><code> git reflog</code>查看历史操作</p>
+<p><code> git reset --hard commitedID</code>将版本回退到某个版本	 </p>
+<blockquote>
+<p>.gitignore 在.gitignore中可以设置哪些文件不用操作</p>
+</blockquote>
+<h2 id="Git分支"><a href="#Git分支" class="headerlink" title="Git分支"></a>Git分支</h2><p><code> git branch</code> 查看所有分支</p>
+<p><code> git branch branchID</code>创建分支</p>
+<p><code> git checkout branchID</code> 切换分支</p>
+<p><code>git checkout -b branchID</code>切换分支，如果没有该分支就创建</p>
+<p><code> git merge 要被合并的分支</code> 将要被合并的分支添加到当前分支</p>
+<p><code> git branch -d branchId</code>    删除分支时会进行检查</p>
+<p><code> git branch -D branchId</code>   强制删除不做检查</p>
+<h2 id="远程仓库"><a href="#远程仓库" class="headerlink" title="远程仓库"></a>远程仓库</h2><h3 id="Git配置SSH公钥"><a href="#Git配置SSH公钥" class="headerlink" title="Git配置SSH公钥"></a>Git配置SSH公钥</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> C:\Users\user\.ssh</span><br><span class="line">ssh-keygen -t rsa <span class="comment">#生成密钥</span></span><br><span class="line"></span><br><span class="line">ssh -T git@gitee.com <span class="comment">#检查是否配置成功</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>将生成的id_rsa.pub文件里的内容复制到码云中</strong></p>
+<p><img src="/pic/git/p1.png" alt="1649930110699"></p>
+<h3 id="添加远程仓库"><a href="#添加远程仓库" class="headerlink" title="添加远程仓库"></a>添加远程仓库</h3><p><code> git remote add origin 项目地址</code> 本地仓库可以有多个远程仓库，origin是对远程仓库设置的id，这里可以修改</p>
+<p><code>git remote</code> 查看远程仓库 </p>
+<p><code>git push 远程仓库名称 本地分支名:远端分支名</code>  通常写法</p>
+<p>​		<code>-f</code> 当远程和本地都进行修改时，强制推送</p>
+<p>​		<code>--set-upstream</code> 将本地分支和远端分支进行关联</p>
+<p><code>git branch -vv </code> 查看本地分支和远端分支的关系 </p>
+<h3 id="克隆"><a href="#克隆" class="headerlink" title="克隆"></a>克隆</h3><p><code> git clone &lt;仓库路径&gt; [本地目录]</code> </p>
+<p><code> git fetch 远程仓库名称 远程仓库分支</code>，将远程仓库的更新抓取到本地，不会合并分支</p>
+<p><code>git pull 远程仓库名称 远程仓库分支 </code>等于fetch+merge</p>
+<h2 id="IDEA使用Git"><a href="#IDEA使用Git" class="headerlink" title="IDEA使用Git"></a>IDEA使用Git</h2><h3 id="配置本地项目"><a href="#配置本地项目" class="headerlink" title="配置本地项目"></a>配置本地项目</h3><h4 id="配置git版本"><a href="#配置git版本" class="headerlink" title="配置git版本"></a>配置git版本</h4><p><img src="/./pic/git/gitversion.png"></p>
+<h4 id="创建本地仓库"><a href="#创建本地仓库" class="headerlink" title="创建本地仓库"></a>创建本地仓库</h4><p><img src="/./pic/git/create.png"></p>
+<h4 id="git提交"><a href="#git提交" class="headerlink" title="git提交"></a>git提交</h4><p><img src="/./pic/git/gitcommit.png"></p>
+<h4 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h4><p><img src="/./pic/git/gitpush1.png"></p>
+<p><img src="/./pic/git/gitpush2.png"></p>
+<h3 id="克隆项目"><a href="#克隆项目" class="headerlink" title="克隆项目"></a>克隆项目</h3><p><img src="/./pic/git/clone.png"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zuoyenuandong.github.io/2022/04/14/git/" data-id="cm5l5pe0k000bosv94fm71h3a" data-title="git" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/15/hexo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          hexo
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/">project</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/vedio-online/">vedio-online</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/video-online/">video-online</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/spirng/">spirng</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/spring/">spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/opencv/">opencv</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/note/">note</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/DevOps/">DevOps</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/blog/" style="font-size: 13.33px;">blog</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/linux/" style="font-size: 16.67px;">linux</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">大数据</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 16.67px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/01/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/09/%E8%B0%B7%E6%AD%8C%E6%94%AF%E4%BB%98/">谷歌支付</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-02-%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">video-02-项目搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-03-%E5%89%8D%E7%AB%AF/">video-03-前端</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-01-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">vedio-01-准备工作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 kuang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

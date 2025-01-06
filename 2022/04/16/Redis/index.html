@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Redis | zuoyenuandong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Redis学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis">
+<meta property="og:url" content="http://zuoyenuandong.github.io/2022/04/16/Redis/index.html">
+<meta property="og:site_name" content="zuoyenuandong">
+<meta property="og:description" content="Redis学习">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-04-15T18:02:52.000Z">
+<meta property="article:modified_time" content="2022-10-26T14:27:03.038Z">
+<meta property="article:author" content="kuang">
+<meta property="article:tag" content="Redis">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="zuoyenuandong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zuoyenuandong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zuoyenuandong.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Redis" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/16/Redis/" class="article-date">
+  <time class="dt-published" datetime="2022-04-15T18:02:52.000Z" itemprop="datePublished">2022-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Redis
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="安装Redis"><a href="#安装Redis" class="headerlink" title="安装Redis"></a>安装Redis</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install centos-release-scl scl-utils-build</span><br><span class="line">yum install -y devtoolset-8-toolchain</span><br><span class="line">scl enable devtoolset-8 bash</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">yum install gcc</span><br><span class="line">wget http://download.redis.io/releases/redis-6.0.8.tar.gz</span><br><span class="line">tar -zxvf redis.tar.gz</span><br><span class="line">cd redis</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">cd /usr/local/bin</span><br></pre></td></tr></table></figure>
+
+<h3 id="后台启动"><a href="#后台启动" class="headerlink" title="后台启动"></a>后台启动</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cd /home/redis</span><br><span class="line">cp redis.conf /etc/redis.conf</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">修改etc下的配置文件</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">将 daemonize no 改为 <span class="built_in">yes</span></span></span><br><span class="line">cd /usr/local/bin</span><br><span class="line">redis-server /etc/redis.conf</span><br><span class="line">ps -ef | grep redis</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">连接redis</span></span><br><span class="line">redis-cli</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">关闭redis</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">1、进入服务输入shutdown</span></span><br><span class="line">shutdown</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">2、退出服务关闭进程</span></span><br><span class="line">exit</span><br><span class="line">ps -ef | grep redis</span><br><span class="line">kill -9 进程号</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看所有key</span></span><br><span class="line">keys *</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看key是否存在</span></span><br><span class="line">exist key</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看key类型</span></span><br><span class="line">type key</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除key</span></span><br><span class="line">del key</span><br><span class="line">unlink key</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置时限</span></span><br><span class="line">expire key seconds</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看时限 -1永不过期 -2已经过期</span></span><br><span class="line">ttl key</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看key数量</span></span><br><span class="line">dbsize </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">清空库</span></span><br><span class="line">flushdb</span><br><span class="line">flushall</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h3><h4 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存值</span></span><br><span class="line">set &lt;key&gt; &lt;value&gt;</span><br><span class="line">setnx &lt;key&gt; &lt;value&gt; #只有key不存在的情况下才能存数据</span><br><span class="line">mset &lt;k1&gt; &lt;v1&gt; &lt;k2&gt; &lt;v2&gt; &lt;k3&gt; &lt;v3&gt;</span><br><span class="line">setrange &lt;key&gt; &lt;startIndex&gt; &lt;value&gt;</span><br><span class="line">setex &lt;key&gt; &lt;expireTime&gt; &lt;value&gt; #存值时就设置过期时间</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取值</span></span><br><span class="line">get &lt;key&gt;</span><br><span class="line">mget &lt;k1&gt; &lt;k2&gt; &lt;k3&gt;</span><br><span class="line">gerrange &lt;key&gt; &lt;startIndex&gt; &lt;endIndex&gt;</span><br><span class="line">getset &lt;key&gt; &lt;newValue&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">追加</span></span><br><span class="line">append &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取字符串长度</span></span><br><span class="line">strlen &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对数字值+1</span></span><br><span class="line">incr &lt;key&gt;</span><br><span class="line">incrby &lt;key&gt; Interage #自定义增加数</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">对数字值-1</span></span><br><span class="line">decr &lt;key&gt;</span><br><span class="line">decrby &lt;key&gt; Interage #自定义减少数</span><br></pre></td></tr></table></figure>
+
+<h4 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存值</span></span><br><span class="line">lpush/rpush &lt;k1&gt; &lt;v1&gt; &lt;k2&gt; &lt;v2&gt; &lt;k3&gt; &lt;v3&gt;</span><br><span class="line">linsert &lt;key&gt; before/after &lt;value&gt; &lt;insertValue&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">吐值</span></span><br><span class="line">lpop/rpop &lt;key&gt; #取出值后列表就删除了</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">产看值</span></span><br><span class="line">lrange &lt;key&gt; &lt;startIndex&gt; &lt;stopIndex&gt;</span><br><span class="line">lrange &lt;key&gt; 0 -1 # 查看所有</span><br><span class="line">lindex &lt;key&gt; &lt;index&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取列表长度</span></span><br><span class="line">llen &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除</span></span><br><span class="line">lrem &lt;key&gt; &lt;n&gt; &lt;value&gt; #删除n个value的值,列表可以有重复的值</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">替换</span></span><br><span class="line">lset &lt;key&gt; &lt;index&gt; &lt;value&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存值</span></span><br><span class="line">sadd &lt;key&gt; &lt;v1&gt; &lt;v2&gt; &lt;v3&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取值</span></span><br><span class="line">smembers &lt;key&gt;</span><br><span class="line">srandmember &lt;key&gt; &lt;n&gt; # 随机取出n个值</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断 有1.无0</span></span><br><span class="line">sismember &lt;key&gt; &lt;value&gt; # 判断key中是否有value值</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查询个数</span></span><br><span class="line">scard &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除</span></span><br><span class="line">srem &lt;key&gt; &lt;v1&gt; &lt;v2&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">吐值</span></span><br><span class="line">spop &lt;key&gt; # 随机从该集合中吐出一个值</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">移动</span></span><br><span class="line">smove &lt;source&gt; &lt;destination&gt; value</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">交集</span></span><br><span class="line">sinter &lt;key1&gt; &lt;key2&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">并集</span></span><br><span class="line">sunion &lt;key1&gt; &lt;key2&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">差集</span></span><br><span class="line">sdiff &lt;key1&gt; &lt;key2&gt; # key1独有的</span><br></pre></td></tr></table></figure>
+
+<h4 id="哈希"><a href="#哈希" class="headerlink" title="哈希"></a>哈希</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">赋值</span></span><br><span class="line">hset &lt;key&gt; &lt;field&gt; &lt;value&gt;</span><br><span class="line">hmset &lt;key&gt; &lt;f1&gt; &lt;v1&gt; &lt;f2&gt; &lt;v2&gt;</span><br><span class="line">hsetnx &lt;key&gt; &lt;field&gt; &lt;value&gt;</span><br><span class="line">hincrby &lt;key&gt; &lt;field&gt; &lt;increment&gt; </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取值</span></span><br><span class="line">hget &lt;key&gt; &lt;field&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">判断</span></span><br><span class="line">hexist &lt;key&gt; &lt;field&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取出所有field</span></span><br><span class="line">hkeys &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取出所有的value</span></span><br><span class="line">hvals &lt;key&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="有序集合"><a href="#有序集合" class="headerlink" title="有序集合"></a>有序集合</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存值</span></span><br><span class="line">zadd &lt;key&gt; &lt;score1&gt; &lt;value1&gt; &lt;score2&gt; &lt;value2</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取值</span></span><br><span class="line">zrange &lt;key&gt; &lt;startIndex&gt; &lt;stopIndex&gt; [withscores]</span><br><span class="line">zrangebyscore &lt;key&gt; &lt;startScore&gt; &lt;stopIndex&gt; [withscores]</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">转换排序方式</span></span><br><span class="line">zrevrange &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">增加分数</span></span><br><span class="line">zincrby &lt;key&gt; &lt;increment&gt; &lt;value&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除</span></span><br><span class="line">zrem &lt;key&gt; &lt;value&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计</span></span><br><span class="line">zcount &lt;key&gt; &lt;startScore&gt; &lt;stopIndex&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看排名</span></span><br><span class="line">zrank &lt;key&gt; &lt;value&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><ul>
+<li><code>改为#bind 127.0.0.1 -::1</code>支持远程访问</li>
+<li><code>protected-mode no</code>关闭保护模式</li>
+<li><code>port 6379</code></li>
+<li><code>tcp-backlog 511</code></li>
+<li><code>timeout 0</code>0：永不超时，以秒为单位</li>
+<li><code>tcp-keepalive 300</code></li>
+<li><code>daemonize yes</code> 支持后台启动</li>
+<li><code>pidfile /var/run/redis_6379.pid</code></li>
+<li><code>loglevel</code> debug verbose notice warning</li>
+<li><code>logfile</code></li>
+<li><code>databases 16</code>Redis默认有16个库</li>
+<li><code>requirepasss</code>设置密码</li>
+</ul>
+<h3 id="发布订阅"><a href="#发布订阅" class="headerlink" title="发布订阅"></a>发布订阅</h3><ol>
+<li><p>打开一个客户端订阅channel1</p>
+<p><code>subscribe channel1</code></p>
+</li>
+<li><p>打开另一个客户端，发送消息</p>
+<p><code>publish chanenl1 hello</code></p>
+</li>
+<li><p>打开第一个客户端查看信息</p>
+</li>
+</ol>
+<h3 id="新数据类型"><a href="#新数据类型" class="headerlink" title="新数据类型"></a>新数据类型</h3><h4 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存值</span></span><br><span class="line">setbit &lt;key&gt; &lt;offset&gt; &lt;value&gt; # value为0或1</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取值</span></span><br><span class="line">getbit &lt;key&gt; &lt;offset&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计字符串被设置为1的个数</span></span><br><span class="line">bitcount &lt;key&gt; [startIndex] [stopIndex] # Redis最小单位是byte，每个byte有8bit，所以一个index是8bit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">位运算</span></span><br><span class="line">bitop and &lt;newkey&gt; &lt;key1&gt; &lt;key2&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存值</span></span><br><span class="line">pfadd &lt;key&gt; &lt;value&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">统计</span></span><br><span class="line">pfcount &lt;key&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">格式合并</span></span><br><span class="line">pfmerge &lt;destinationKey&gt; &lt;sourceKey1&gt; &lt;sourceKey2&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Geospatial"><a href="#Geospatial" class="headerlink" title="Geospatial"></a>Geospatial</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">存值</span></span><br><span class="line">geoadd &lt;key&gt; &lt;longitude&gt; &lt;latitude&gt; &lt;member&gt; #经度 维度 名称</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">取值</span></span><br><span class="line">geopos &lt;key&gt; &lt;member&gt;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">两直线距离</span></span><br><span class="line">geodist &lt;key&gt; &lt;member1&gt; &lt;member2&gt; [m|km|ft|mi] # 默认为米</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">以某中心半径内的元素</span></span><br><span class="line">georadius &lt;key&gt; &lt;longitude&gt; &lt;latitude&gt; &lt;radius&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Jedis"><a href="#Jedis" class="headerlink" title="Jedis"></a>Jedis</h3><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- https://mvnrepository.com/artifact/redis.clients/jedis --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>redis.clients<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jedis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>4.2.3<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0-alpha2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.slf4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>slf4j-log4j12<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.0.0-alpha2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>log4j<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.2.17<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JedisDemo01</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Jedis</span> <span class="variable">jedis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Jedis</span>(<span class="string">&quot;192.168.80.66&quot;</span>,<span class="number">6379</span>);</span><br><span class="line">        System.out.println(jedis.ping());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="springboot"><a href="#springboot" class="headerlink" title="springboot"></a>springboot</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-redis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-pool2<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Redis</span></span><br><span class="line"><span class="comment"># Redis服务器地址</span></span><br><span class="line"><span class="attr">spring.redis.host</span>=<span class="string">192.168.80.66</span></span><br><span class="line"><span class="comment"># Redis服务器默认端口</span></span><br><span class="line"><span class="attr">spring.redis.port</span>=<span class="string">6379</span></span><br><span class="line"><span class="comment"># Redis数据库索引</span></span><br><span class="line"><span class="attr">spring.redis.database</span>=<span class="string">0</span></span><br><span class="line"><span class="comment"># 连接超时时间</span></span><br><span class="line"><span class="attr">spring.redis.timeout</span>=<span class="string">1800000</span></span><br><span class="line"><span class="comment"># 连接池最大连接数（使用负值则表示没有限制）</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.max-active</span>=<span class="string">20</span></span><br><span class="line"><span class="comment"># 最大阻塞等待时间（使用负值则表示没有限制）</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.max-wait</span>=<span class="string">-1</span></span><br><span class="line"><span class="comment"># 连接池中最大空闲连接</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.max-idle</span>=<span class="string">5</span></span><br><span class="line"><span class="comment"># 连接池中最小空闲连接</span></span><br><span class="line"><span class="attr">spring.redis.lettuce.pool.min-idle</span>=<span class="string">0</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableCaching</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">RedisConfig</span> <span class="keyword">extends</span> <span class="title class_">CachingConfigurerSupport</span> &#123;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RedisTemplate&lt;String, Object&gt; <span class="title function_">redisTemplate</span><span class="params">(RedisConnectionFactory factory)</span>&#123;</span><br><span class="line">        RedisTemplate&lt;String, Object&gt; template = <span class="keyword">new</span> <span class="title class_">RedisTemplate</span>&lt;&gt;();</span><br><span class="line">        RedisSerializer&lt;String&gt; redisSerializer = <span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>();</span><br><span class="line">        <span class="type">Jackson2JsonRedisSerializer</span> <span class="variable">jackson2JsonRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonRedisSerializer</span>&lt;&gt;(Object.class);</span><br><span class="line">        <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line">        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line">        template.setConnectionFactory(factory);</span><br><span class="line">        template.setKeySerializer(redisSerializer);</span><br><span class="line">        template.setValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        template.setHashValueSerializer(jackson2JsonRedisSerializer);</span><br><span class="line">        <span class="keyword">return</span> template;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> CacheManager <span class="title function_">cacheManager</span><span class="params">(RedisConnectionFactory factory)</span>&#123;</span><br><span class="line">        RedisSerializer&lt;String&gt; redisSerializer = <span class="keyword">new</span> <span class="title class_">StringRedisSerializer</span>();</span><br><span class="line">        <span class="type">Jackson2JsonRedisSerializer</span> <span class="variable">jackson2JsonRedisSerializer</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Jackson2JsonRedisSerializer</span>&lt;&gt;(Object.class);</span><br><span class="line">        <span class="type">ObjectMapper</span> <span class="variable">om</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ObjectMapper</span>();</span><br><span class="line">        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);</span><br><span class="line">        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);</span><br><span class="line">        jackson2JsonRedisSerializer.setObjectMapper(om);</span><br><span class="line">        <span class="type">RedisCacheConfiguration</span> <span class="variable">config</span> <span class="operator">=</span> RedisCacheConfiguration.defaultCacheConfig()</span><br><span class="line">                .entryTtl(Duration.ofSeconds(<span class="number">600</span>))</span><br><span class="line">                .serializeKeysWith(RedisSerializationContext.SerializationPair.fromSerializer(redisSerializer))</span><br><span class="line">                .serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(jackson2JsonRedisSerializer))</span><br><span class="line">                .disableCachingNullValues();</span><br><span class="line">        <span class="type">RedisCacheManager</span> <span class="variable">cacheManager</span> <span class="operator">=</span> RedisCacheManager.builder(factory)</span><br><span class="line">                .cacheDefaults(config)</span><br><span class="line">                .build();</span><br><span class="line">        <span class="keyword">return</span> cacheManager;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h3><h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><p><code>multi、exec、discard</code></p>
+<h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><p><code>watch、unwatch</code></p>
+<h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><h3 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h3><h4 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h4><p>在指定的时间间隔内将内存中的数据集快照写入磁盘</p>
+<p>默认持久化文件名称dump.rdb</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">当redis无法写入磁盘的话，直接关掉redis的写操作</span></span><br><span class="line">stop-writes-onbgsave-error yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">压缩文件</span></span><br><span class="line">rdbcompression yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">完整性检查</span></span><br><span class="line">rebchecksum yes</span><br></pre></td></tr></table></figure>
+
+<h4 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h4><blockquote>
+<p>AOF和RDB同时开启，系统默认读取AOF的数据</p>
+</blockquote>
+<p>以日志的形式来记录每个写操作（增量保存），将redis执行过的所有写指令记录下来（读操作不记录），只许追加文件不可以改写文件</p>
+<p>默认持久化文件名称appendonly.aof</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开启aof</span></span><br><span class="line">appendonly yes</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">修复aof文件</span></span><br><span class="line">redis-check-aof --fix appendonly.aof</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">同步频率设置</span></span><br><span class="line">appendfsync [always、everysec、no]</span><br></pre></td></tr></table></figure>
+
+<h3 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h3><h4 id="常规模式"><a href="#常规模式" class="headerlink" title="常规模式"></a>常规模式</h4><p>一主二仆、薪火相传、反客为主</p>
+<p>在redis从机上执行 slavaof 主redis的IP 主redis的端口</p>
+<p>slaveof no one 当主服务器宕机后，从机成为主机</p>
+<h4 id="哨兵模式"><a href="#哨兵模式" class="headerlink" title="哨兵模式"></a>哨兵模式</h4><p>反客为主的自动版</p>
+<ol>
+<li><p>新建sentinel.conf文件</p>
+<p><code>sentinel monitor mymaster 主机ip 主机端口 哨兵同意迁移的数量</code></p>
+</li>
+<li><p>redis-sentinel sentinel.conf</p>
+</li>
+<li><p>从机配置文件中replica-priority的值越小越容易成为新的主机，如果相同会选取runid小的成为新的主机，runid为redis服务启动时生成的随机数</p>
+</li>
+</ol>
+<h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><ol>
+<li><p>cluster-enable yes 打开集群模式</p>
+</li>
+<li><p>cluster-config-file nodes-6379.conf 设置节点配置文件名</p>
+</li>
+<li><p>cluster-node-timeout 15000 设置节点失联时间，超过该时间，自动进行主从互换</p>
+</li>
+<li><p>进入安装包解压的目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ./src</span><br><span class="line">redis-cli --cluster create --cluster-replicas 1 多个ip地址</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>通过集群方式连接redis</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis-cli -c</span><br><span class="line">cluster nodes #查看集群节点</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cluster keyslot key #查看插槽值</span><br><span class="line">cluster countkeysinslot </span><br><span class="line">cluster getkeysinslot</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h3><h4 id="缓存穿透"><a href="#缓存穿透" class="headerlink" title="缓存穿透"></a>缓存穿透</h4><ul>
+<li>对空值缓存</li>
+<li>设置可访问的名单</li>
+<li>采用布隆过滤器</li>
+<li>进行实时监控</li>
+</ul>
+<h4 id="缓存击穿"><a href="#缓存击穿" class="headerlink" title="缓存击穿"></a>缓存击穿</h4><ul>
+<li>预先设置热门数据</li>
+<li>实时调整</li>
+<li>使用锁</li>
+</ul>
+<h4 id="缓存雪崩"><a href="#缓存雪崩" class="headerlink" title="缓存雪崩"></a>缓存雪崩</h4><ul>
+<li>构建多级缓存架构</li>
+<li>使用锁或队列</li>
+<li>设置过期标志更新缓存</li>
+<li>将缓存失效时间分散开</li>
+</ul>
+<h4 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h4><h3 id="新功能"><a href="#新功能" class="headerlink" title="新功能"></a>新功能</h3><p>acl setuser 名称 [on&#x2F;off] &gt;password ~关键字 + get	</p>
+<p>auto Username password</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zuoyenuandong.github.io/2022/04/16/Redis/" data-id="cm5l5pe0j0009osv92py4b878" data-title="Redis" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/04/16/%E9%93%B6%E8%A1%8C%E5%8D%A1%E8%AF%86%E5%88%AB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          银行卡识别
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/04/15/markdown/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">markdown</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/">project</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/vedio-online/">vedio-online</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/video-online/">video-online</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/spirng/">spirng</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/spring/">spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/opencv/">opencv</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/note/">note</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/DevOps/">DevOps</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/blog/" style="font-size: 13.33px;">blog</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/linux/" style="font-size: 16.67px;">linux</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">大数据</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 16.67px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/01/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/09/%E8%B0%B7%E6%AD%8C%E6%94%AF%E4%BB%98/">谷歌支付</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-02-%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">video-02-项目搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-03-%E5%89%8D%E7%AB%AF/">video-03-前端</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-01-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">vedio-01-准备工作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 kuang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

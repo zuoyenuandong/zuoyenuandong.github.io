@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>nginx | zuoyenuandong</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="nginx基本使用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="nginx">
+<meta property="og:url" content="http://zuoyenuandong.github.io/2022/07/06/nginx/index.html">
+<meta property="og:site_name" content="zuoyenuandong">
+<meta property="og:description" content="nginx基本使用">
+<meta property="og:locale">
+<meta property="article:published_time" content="2022-07-06T07:15:32.000Z">
+<meta property="article:modified_time" content="2022-10-26T14:25:47.836Z">
+<meta property="article:author" content="kuang">
+<meta property="article:tag" content="Java">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="zuoyenuandong" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">zuoyenuandong</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://zuoyenuandong.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-nginx" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/07/06/nginx/" class="article-date">
+  <time class="dt-published" datetime="2022-07-06T07:15:32.000Z" itemprop="datePublished">2022-07-06</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      nginx
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="安装nginx"><a href="#安装nginx" class="headerlink" title="安装nginx"></a>安装nginx</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装编译工具</span></span><br><span class="line">yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装PCRE</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"> http://downloads.sourceforge.net/project/pcre/pcre/8.35/pcre-8.35.tar.gz</span> </span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">或者</span></span><br><span class="line">cd /usr/local/src/</span><br><span class="line">wget http://downloads.sourceforge.net/project/pcre/pcre/8.35/pcre-8.35.tar.gz</span><br><span class="line">tar zxvf pcre-8.35.tar.gz</span><br><span class="line">cd pcre-8.35</span><br><span class="line">./configure</span><br><span class="line">make &amp;&amp; make install</span><br><span class="line">pcre-config --version</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装nginx</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">https://nginx.org/en/download.html</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">或者</span></span><br><span class="line">cd /usr/local/src/</span><br><span class="line">wget http://nginx.org/download/nginx-1.6.2.tar.gz</span><br><span class="line">tar zxvf nginx-1.6.2.tar.gz</span><br><span class="line">cd nginx-1.6.2</span><br><span class="line">./configure --prefix=/usr/local/webserver/nginx --with-http_stub_status_module --with-http_ssl_module --with-pcre=/usr/local/src/pcre-8.35</span><br><span class="line">make</span><br><span class="line">make install</span><br><span class="line">/usr/local/webserver/nginx/sbin/nginx -v</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装成功后,nginx文件夹/usr/local/nginx</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">使用nginx命令必须提前进入nginx目录中/usr/local/nginx/sbin</span></span><br><span class="line">cd /usr/local/nginx/sbin</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">启用nginx</span></span><br><span class="line">./nginx</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">关闭nginx</span></span><br><span class="line">./nginx -s stop</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">重新加载nginx</span></span><br><span class="line">./nginx -s reload</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">文件位置/usr/local/nginx/conf/nginx.conf</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="全局块"><a href="#全局块" class="headerlink" title="全局块"></a>全局块</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"> #</span><span class="language-bash">处理并发数量</span></span><br><span class="line">worker_processes 1;</span><br></pre></td></tr></table></figure>
+
+<h4 id="events块"><a href="#events块" class="headerlink" title="events块"></a>events块</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">支持最大连接数</span></span><br><span class="line">worker_connections 1024;</span><br></pre></td></tr></table></figure>
+
+<h4 id="http块"><a href="#http块" class="headerlink" title="http块"></a>http块</h4><ul>
+<li>http全局块</li>
+<li>http server块</li>
+</ul>
+<h3 id="反向代理"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">	listen 端口号;</span><br><span class="line">    server_name ip地址;</span><br><span class="line">    location 请求表达式(正则表达式)&#123;</span><br><span class="line">        proxy_pass 跳转ip:端口号;</span><br><span class="line">    &#125;</span><br><span class="line">    location 请求表达式(正则表达式)&#123;</span><br><span class="line">        proxy_pass 跳转ip:端口号;</span><br><span class="line">    &#125;</span><br><span class="line">    多个location</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><h4 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">upstream 负载均衡服务名称&#123;</span><br><span class="line">	server ip:port [weight=权重系数];</span><br><span class="line">	server ip:port [weight=权重系数];</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">	listen port;</span><br><span class="line">	server_name ip;</span><br><span class="line">	local 表达式&#123;</span><br><span class="line">		proxy_pass http://负载均衡服务名称</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="权重"><a href="#权重" class="headerlink" title="权重"></a>权重</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">upstream 负载均衡服务名称&#123;</span><br><span class="line">	server ip:port [weight=权重系数];</span><br><span class="line">	server ip:port [weight=权重系数];</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">	listen port;</span><br><span class="line">	server_name ip;</span><br><span class="line">	local 表达式&#123;</span><br><span class="line">		proxy_pass http://负载均衡服务名称</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="ip-hash-每个ip只访问一台服务器"><a href="#ip-hash-每个ip只访问一台服务器" class="headerlink" title="ip_hash,每个ip只访问一台服务器"></a>ip_hash,每个ip只访问一台服务器</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">upstream 负载均衡服务名称&#123;</span><br><span class="line">	ip_hash;</span><br><span class="line">	server ip:port;</span><br><span class="line">	server ip:port;</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">	listen port;</span><br><span class="line">	server_name ip;</span><br><span class="line">	local 表达式&#123;</span><br><span class="line">		proxy_pass http://负载均衡服务名称</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="fair-根据相应时间来分配"><a href="#fair-根据相应时间来分配" class="headerlink" title="fair,根据相应时间来分配"></a>fair,根据相应时间来分配</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">upstream 负载均衡服务名称&#123;</span><br><span class="line">	server ip:port [weight=权重系数];</span><br><span class="line">	server ip:port [weight=权重系数];</span><br><span class="line">	fair;</span><br><span class="line">&#125;</span><br><span class="line">server&#123;</span><br><span class="line">	listen port;</span><br><span class="line">	server_name ip;</span><br><span class="line">	local 表达式&#123;</span><br><span class="line">		proxy_pass http://负载均衡服务名称</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="动静分离"><a href="#动静分离" class="headerlink" title="动静分离"></a>动静分离</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server&#123;</span><br><span class="line">	listen port;</span><br><span class="line">	server_name ip;</span><br><span class="line">	local /image&#123;</span><br><span class="line">		root /data;#当访问/image时,linux会找系统中/data/image文件夹中的内容</span><br><span class="line">		autoindex on;#列出文件夹中的文件</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="高可用集群"><a href="#高可用集群" class="headerlink" title="高可用集群"></a>高可用集群</h3><p><code>keepalived</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">yum install keepalived -y</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">安装完成后的路径为/etc/keepalived/keepalived.conf</span></span><br><span class="line">systemctl start keepalived.server</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">开启keepalived</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">#全局配置</span><br><span class="line">global_defs &#123;</span><br><span class="line">    notification_email &#123;</span><br><span class="line">    acassen@firewall.loc</span><br><span class="line">    failover@firewall.loc</span><br><span class="line">    sysadmin@firewall.loc</span><br><span class="line">    &#125;</span><br><span class="line">    notification_email_from Alexandre.Cassen@firewall.loc</span><br><span class="line">    smtp_server 192.168.17.129 #主机ip</span><br><span class="line">    smtp_connect_timeout 30</span><br><span class="line">    router_id 服务器主机ip #=127.0.0.1=</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#脚本配置</span><br><span class="line">vrrp_script chk_http_port &#123;</span><br><span class="line">    script &quot;/usr/local/src/nginx_check.sh&quot;#脚本路径</span><br><span class="line">    interval 2 #（检测脚本执行的间隔）;每隔2s检查一次</span><br><span class="line">    weight 2 #设置服务器权重</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">#虚拟ip的配置</span><br><span class="line">vrrp_instance VI_1 &#123;</span><br><span class="line">        state BACKUP # Master为Master；Salve为BACKUP</span><br><span class="line">        interface ens33 #网卡；可以用ip addr 看网卡名</span><br><span class="line">        virtual_router_id 51 # 主、备机的 virtual_router_id 必须相同</span><br><span class="line">        priority 90 # 主、备机取不同的优先级，主机值较大，备份机值较小</span><br><span class="line">        advert_int 1 #每1s发送一次心跳</span><br><span class="line">        authentication &#123;</span><br><span class="line">        auth_type PASS</span><br><span class="line">        auth_pass 1111</span><br><span class="line">	&#125;</span><br><span class="line">	virtual_ipaddress &#123;</span><br><span class="line">    	192.168.17.50 // VRRP H 虚拟ip地址,多台keepalived绑定一个ip；必须同一网段</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">在/usr/local/src 添加检测脚本</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">A=`ps -C nginx –no-header |wc -l`</span><br><span class="line">if [ $A -eq 0 ];then</span><br><span class="line">    /usr/local/nginx/sbin/nginx #nginx启动路径</span><br><span class="line">    sleep 2</span><br><span class="line">    if [ `ps -C nginx --no-header |wc -l` -eq 0 ];then</span><br><span class="line">        killall keepalived #nginx挂掉后，杀掉这个服务器的所有keepalived进程</span><br><span class="line">    fi</span><br><span class="line">fi</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zuoyenuandong.github.io/2022/07/06/nginx/" data-id="cm5l5pe0q0011osv9ab6q4nqi" data-title="nginx" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/07/08/elasticsearch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          elasticsearch
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/18/springboot-03/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title">springboot-03</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Kategorien</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/Algorithm/">Algorithm</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/">project</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/vedio-online/">vedio-online</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/project/video-online/">video-online</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/spirng/">spirng</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/spring/">spring</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7/">常用工具</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Python/">Python</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Python/opencv/">opencv</a></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/note/">note</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/DevOps/">DevOps</a></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/opencv/" rel="tag">opencv</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" rel="tag">大数据</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4/" rel="tag">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/blog/" style="font-size: 13.33px;">blog</a> <a href="/tags/docker/" style="font-size: 10px;">docker</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/linux/" style="font-size: 16.67px;">linux</a> <a href="/tags/opencv/" style="font-size: 10px;">opencv</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/" style="font-size: 10px;">大数据</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 13.33px;">算法</a> <a href="/tags/%E8%BF%90%E7%BB%B4/" style="font-size: 16.67px;">运维</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/07/">July 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2025/01/06/hello-world/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/09/%E8%B0%B7%E6%AD%8C%E6%94%AF%E4%BB%98/">谷歌支付</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-02-%E9%A1%B9%E7%9B%AE%E6%90%AD%E5%BB%BA/">video-02-项目搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-03-%E5%89%8D%E7%AB%AF/">video-03-前端</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/28/video-01-%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C/">vedio-01-准备工作</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2025 kuang<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
