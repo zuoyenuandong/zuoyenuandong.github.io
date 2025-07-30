@@ -1,0 +1,355 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>谷歌支付 | 还（huan）</title><meta name="author" content="zuoyenuandong"><meta name="copyright" content="zuoyenuandong"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="回调通知实时开发者通知参考指南  | Google Play 结算系统  | Android Developers  回调通知只会告知购买状态发生了变化，不会提供购买交易的相关信息，需要开发者在接收到了通知后调用谷歌接口自己查询  回调示例： 12345678910&#123;  &quot;message&quot;: &#123;    &quot;attributes&quot;: &amp;#12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="谷歌支付">
+<meta property="og:url" content="https://github.com/zuoyenuandong/zuoyenuandong.github.io/2023/04/09/%E8%B0%B7%E6%AD%8C%E6%94%AF%E4%BB%98/index.html">
+<meta property="og:site_name" content="还（huan）">
+<meta property="og:description" content="回调通知实时开发者通知参考指南  | Google Play 结算系统  | Android Developers  回调通知只会告知购买状态发生了变化，不会提供购买交易的相关信息，需要开发者在接收到了通知后调用谷歌接口自己查询  回调示例： 12345678910&#123;  &quot;message&quot;: &#123;    &quot;attributes&quot;: &amp;#12">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://github.com/zuoyenuandong/zuoyenuandong.github.io/img/cover.jpg">
+<meta property="article:published_time" content="2023-04-09T10:47:16.000Z">
+<meta property="article:modified_time" content="2023-04-09T12:12:02.118Z">
+<meta property="article:author" content="zuoyenuandong">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://github.com/zuoyenuandong/zuoyenuandong.github.io/img/cover.jpg"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "谷歌支付",
+  "url": "https://github.com/zuoyenuandong/zuoyenuandong.github.io/2023/04/09/%E8%B0%B7%E6%AD%8C%E6%94%AF%E4%BB%98/",
+  "image": "https://github.com/zuoyenuandong/zuoyenuandong.github.io/img/cover.jpg",
+  "datePublished": "2023-04-09T10:47:16.000Z",
+  "dateModified": "2023-04-09T12:12:02.118Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "zuoyenuandong",
+      "url": "https://github.com/zuoyenuandong/zuoyenuandong.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/zuoyenuandong/zuoyenuandong.github.io/img/blog.png"><link rel="canonical" href="https://github.com/zuoyenuandong/zuoyenuandong.github.io/2023/04/09/%E8%B0%B7%E6%AD%8C%E6%94%AF%E4%BB%98/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/zuoyenuandong/zuoyenuandong.github.io/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/zuoyenuandong/zuoyenuandong.github.io/',
+  algolia: undefined,
+  localSearch: {"path":"/zuoyenuandong/zuoyenuandong.github.io/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":300,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: false,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '谷歌支付',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="web_bg" style="background: linear-gradient(90deg,rgba(247, 149, 51, 0.1) 0,rgba(243, 112, 85, 0.1) 15%,rgba(239, 78, 123, 0.1) 30%,rgba(161, 102, 171, 0.1) 44%,rgba(80, 115, 184, 0.1) 58%,rgba(16, 152, 173, 0.1) 72%,rgba(7, 179, 155, 0.1) 86%,rgba(109, 186, 130, 0.1) 100%);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/zuoyenuandong/zuoyenuandong.github.io/img/avatar.jpg" onerror="this.onerror=null;this.src='/zuoyenuandong/zuoyenuandong.github.io/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/zuoyenuandong/zuoyenuandong.github.io/archives/"><div class="headline">文章</div><div class="length-num">26</div></a><a href="/zuoyenuandong/zuoyenuandong.github.io/tags/"><div class="headline">标签</div><div class="length-num">11</div></a><a href="/zuoyenuandong/zuoyenuandong.github.io/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/zuoyenuandong/zuoyenuandong.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/zuoyenuandong/zuoyenuandong.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/zuoyenuandong/zuoyenuandong.github.io/categories/"><i class="fa-fw /img/top.jpg"></i><span> 分类</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/zuoyenuandong/zuoyenuandong.github.io/"><span class="site-name">还（huan）</span></a><a class="nav-page-title" href="/zuoyenuandong/zuoyenuandong.github.io/"><span class="site-name">谷歌支付</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/zuoyenuandong/zuoyenuandong.github.io/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/zuoyenuandong/zuoyenuandong.github.io/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/zuoyenuandong/zuoyenuandong.github.io/categories/"><i class="fa-fw /img/top.jpg"></i><span> 分类</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">谷歌支付</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-04-09T10:47:16.000Z" title="发表于 2023-04-09 18:47:16">2023-04-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-04-09T12:12:02.118Z" title="更新于 2023-04-09 20:12:02">2023-04-09</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="container post-content" id="article-container"><h2 id="回调通知"><a href="#回调通知" class="headerlink" title="回调通知"></a>回调通知</h2><p><a target="_blank" rel="noopener" href="https://developer.android.com/google/play/billing/rtdn-reference?hl=zh-cn#grant_publish_rights_on_your_topic">实时开发者通知参考指南  | Google Play 结算系统  | Android Developers</a></p>
+<blockquote>
+<p>回调通知只会告知购买状态发生了变化，不会提供购买交易的相关信息，需要开发者在接收到了通知后调用谷歌接口自己查询</p>
+</blockquote>
+<p><code>回调示例：</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;message&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;attributes&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;key&quot;</span><span class="punctuation">:</span> <span class="string">&quot;value&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;data&quot;</span><span class="punctuation">:</span> <span class="string">&quot;eyAidmVyc2lvbiI6IHN0cmluZywgInBhY2thZ2VOYW1lIjogc3RyaW5nLCAiZXZlbnRUaW1lTWlsbGlzIjogbG9uZywgIm9uZVRpbWVQcm9kdWN0Tm90aWZpY2F0aW9uIjogT25lVGltZVByb2R1Y3ROb3RpZmljYXRpb24sICJzdWJzY3JpcHRpb25Ob3RpZmljYXRpb24iOiBTdWJzY3JpcHRpb25Ob3RpZmljYXRpb24sICJ0ZXN0Tm90aWZpY2F0aW9uIjogVGVzdE5vdGlmaWNhdGlvbiB9&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;messageId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;136969346945&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;subscription&quot;</span><span class="punctuation">:</span> <span class="string">&quot;projects/myproject/subscriptions/mysubscription&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Base64解码：</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;packageName&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;eventTimeMillis&quot;</span><span class="punctuation">:</span> long<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;subscriptionNotification&quot;</span><span class="punctuation">:</span> SubscriptionNotification</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>属性名称</strong></th>
+<th><strong>值</strong></th>
+<th align="left"><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>version</td>
+<td>string</td>
+<td align="left">此通知的版本。最初，此值为“1.0”。此版本与其他版本字段不同。</td>
+</tr>
+<tr>
+<td>packageName</td>
+<td>string</td>
+<td align="left">与此通知相关的应用的软件包名称（例如“com.some.thing”）。</td>
+</tr>
+<tr>
+<td>eventTimeMillis</td>
+<td>long</td>
+<td align="left">事件发生的时间戳，以从公元纪年开始计算的毫秒数表示。</td>
+</tr>
+<tr>
+<td>subscriptionNotification</td>
+<td>SubscriptionNotification</td>
+<td align="left">订阅相关信息</td>
+</tr>
+</tbody></table>
+<p><code>subscriptionNotification：</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;version&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;notificationType&quot;</span><span class="punctuation">:</span> int<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;purchaseToken&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;subscriptionId&quot;</span><span class="punctuation">:</span> string</span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th><strong>属性名称</strong></th>
+<th><strong>值</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>version</td>
+<td>string</td>
+<td>此通知的版本。最初，此值为“1.0”。此版本与其他版本字段不同。</td>
+</tr>
+<tr>
+<td>notificationType</td>
+<td>int</td>
+<td>订阅的 notificationType 可以具有以下值：<br />(1) SUBSCRIPTION_RECOVERED - 从帐号保留状态恢复了订阅。<br />(2) SUBSCRIPTION_RENEWED - 续订了处于活动状态的订阅。<br />(3) SUBSCRIPTION_CANCELED - 自愿或非自愿地取消了订阅。如果是自愿取消，在用户取消时发送。<br />(4) SUBSCRIPTION_PURCHASED - 购买了新的订阅。<br />(5) SUBSCRIPTION_ON_HOLD - 订阅已进入帐号保留状态（如果已启用）。<br />(6) SUBSCRIPTION_IN_GRACE_PERIOD - 订阅已进入宽限期（如果已启用）。<br />(7) SUBSCRIPTION_RESTARTED - 用户已通过 <strong>Play &gt; 帐号 &gt; 订阅</strong>恢复了订阅。订阅已取消，但在用户恢复时尚未到期。如需了解详情，请参阅 <a href="/google/play/billing/subscriptions#restore">恢复</a>。<br />(8) SUBSCRIPTION_PRICE_CHANGE_CONFIRMED - 用户已成功确认订阅价格变动。<br />(9) SUBSCRIPTION_DEFERRED - 订阅的续订时间点已延期。<br />(10) SUBSCRIPTION_PAUSED - 订阅已暂停。<br />(11) SUBSCRIPTION_PAUSE_SCHEDULE_CHANGED - 订阅暂停计划已更改。<br />(12) SUBSCRIPTION_REVOKED - 用户在到期时间之前已撤消订阅。<br />(13) SUBSCRIPTION_EXPIRED - 订阅已到期。</td>
+</tr>
+<tr>
+<td>purchaseToken</td>
+<td>string</td>
+<td>购买订阅时向用户设备提供的令牌。</td>
+</tr>
+<tr>
+<td>subscriptionId</td>
+<td>string</td>
+<td>所购买订阅的商品 ID（例如“monthly001”）。</td>
+</tr>
+</tbody></table>
+<p><a target="_blank" rel="noopener" href="https://developers.google.com/android-publisher/api-ref/rest/v3/purchases.subscriptionsv2/get?hl=zh-cn">订单查询接口</a>（网址采用gRPC转码）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">GET https://androidpublisher.googleapis.com/androidpublisher/v3/applications/&#123;packageName&#125;/purchases/subscriptionsv2/tokens/&#123;token&#125;</span><br><span class="line"></span><br><span class="line">packageName	string 购买此订阅的应用的软件包（例如“com.some.thing”）。</span><br><span class="line"></span><br><span class="line">token string 必需。购买订阅时向用户设备提供的令牌。</span><br></pre></td></tr></table></figure>
+
+<p><code>返回值：</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;kind&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;regionCode&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;latestOrderId&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;lineItems&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">    <span class="punctuation">&#123;</span></span><br><span class="line">      object (SubscriptionPurchaseLineItem)</span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;startTime&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;subscriptionState&quot;</span><span class="punctuation">:</span> enum (SubscriptionState)<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;linkedPurchaseToken&quot;</span><span class="punctuation">:</span> string<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;pausedStateContext&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    object (PausedStateContext)</span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;canceledStateContext&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    object (CanceledStateContext)</span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;testPurchase&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    object (TestPurchase)</span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;acknowledgementState&quot;</span><span class="punctuation">:</span> enum (AcknowledgementState)<span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;externalAccountIdentifiers&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    object (ExternalAccountIdentifiers)</span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;subscribeWithGoogleInfo&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    object (SubscribeWithGoogleInfo)</span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>属性名称</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>kind</td>
+<td>string</td>
+<td>此类型表示 androidpublisherservice 中的 SubscriptionPurchaseV2 对象。</td>
+</tr>
+<tr>
+<td>regionCode</td>
+<td>string</td>
+<td>订阅获得批准的用户的 ISO 3166-1 alpha-2 帐单邮寄地址所在国家&#x2F;地区代码。</td>
+</tr>
+<tr>
+<td>latestOrderId</td>
+<td>string</td>
+<td>与购买订阅有关的最新订单的订单 ID。对于自动续订型订阅，这是注册订单的订单 ID（如果尚未续订），或最新的周期性订单 ID（成功、待处理或遭拒的订单）。对于预付费订阅，这是与所查询的购买令牌相关联的订单 ID。</td>
+</tr>
+<tr>
+<td>lineItems[]</td>
+<td>object</td>
+<td>订阅购买交易的商品级信息。同一笔购买交易中的所有商品都应全部使用 AutoRenewingPlan，或者全都使用 PrepaidPlan。</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>string</td>
+<td>授予订阅的时间。没有为待处理的订阅设置订阅（订阅已创建，但在注册期间正在等待付款）。<br />时间戳采用 RFC3339 世界协调时间 (UTC)（即“祖鲁时”）格式，分辨率为纳秒级，最多包含九个小数位。示例：<code>&quot;2014-10-02T15:01:23Z&quot;</code> 和 <code>&quot;2014-10-02T15:01:23.045123456Z&quot;</code>。</td>
+</tr>
+<tr>
+<td>subscriptionState</td>
+<td>enum</td>
+<td>如果旧订阅的购买令牌是以下任一项，则视为购买令牌：* 已取消但未过期的订阅重新注册 * 升级&#x2F;降级之前的订阅。* 将预付费订阅转换为自动续订型订阅。* 将自动续订型订阅转换为预付费订阅。* 为预付费订阅充值。</td>
+</tr>
+<tr>
+<td>pausedStateContext</td>
+<td>object</td>
+<td>有关暂停的订阅的其他背景信息。仅当订阅当前具有 subscriptionState SUBSCRIPTION_STATE_PAUSED 时才存在。</td>
+</tr>
+<tr>
+<td>canceledStateContext</td>
+<td>object</td>
+<td>有关取消订阅的其他背景信息。仅当订阅当前具有 subscriptionState SUBSCRIPTION_STATE_CANCELED 时才存在。</td>
+</tr>
+<tr>
+<td>testPurchase</td>
+<td>object</td>
+<td>仅当此订阅购买交易是测试购买交易时，此字段才会显示。</td>
+</tr>
+<tr>
+<td>acknowledgementState</td>
+<td>enum</td>
+<td>订阅的确认状态。</td>
+</tr>
+<tr>
+<td>externalAccountIdentifiers</td>
+<td>object</td>
+<td>第三方服务中的用户帐号标识符。</td>
+</tr>
+<tr>
+<td>subscribeWithGoogleInfo</td>
+<td>object</td>
+<td>与通过“通过 Google 订阅”进行的购买交易相关联的用户个人资料。</td>
+</tr>
+</tbody></table>
+<p><code>订阅状态：</code></p>
+<table>
+<thead>
+<tr>
+<th>枚举</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SUBSCRIPTION_STATE_UNSPECIFIED</td>
+<td>未指定订阅状态。</td>
+</tr>
+<tr>
+<td>SUBSCRIPTION_STATE_PENDING</td>
+<td>订阅已创建，但在注册期间正在等待付款。在此状态下，所有商品都正在等待付款。</td>
+</tr>
+<tr>
+<td>SUBSCRIPTION_STATE_ACTIVE</td>
+<td>订阅处于有效状态。- (1) 如果订阅是自动续订方案，则至少有一个项目已自动续订且未过期。- (2) 如果订阅是预付费方案，至少有一项不会过期。</td>
+</tr>
+<tr>
+<td>SUBSCRIPTION_STATE_PAUSED</td>
+<td>订阅已暂停。仅当订阅是自动续订方案时，这个状态才可用。在此状态下，所有内容都会处于暂停状态。</td>
+</tr>
+<tr>
+<td>SUBSCRIPTION_STATE_IN_GRACE_PERIOD</td>
+<td>订阅处于宽限期。仅当订阅是自动续订方案时，这个状态才可用。在此状态下，所有内容都处于宽限期。</td>
+</tr>
+<tr>
+<td>SUBSCRIPTION_STATE_ON_HOLD</td>
+<td>订阅处于暂停状态（已暂停）。仅当订阅是自动续订方案时，这个状态才可用。在此状态下，所有内容都会处于保全状态。</td>
+</tr>
+<tr>
+<td>SUBSCRIPTION_STATE_CANCELED</td>
+<td>订阅已取消，但尚未到期。仅当订阅是自动续订方案时，这个状态才可用。所有内容的 autoRenewEnabled 都设为 false。</td>
+</tr>
+<tr>
+<td>SUBSCRIPTION_STATE_EXPIRED</td>
+<td>订阅已过期。所有项的过期时间均为过去时间。</td>
+</tr>
+</tbody></table>
+<h2 id="回调配置"><a href="#回调配置" class="headerlink" title="回调配置"></a>回调配置</h2><p><code>网域验证</code></p>
+<p><a target="_blank" rel="noopener" href="https://search.google.com/search-console/welcome">欢迎使用 Google Search Console</a></p>
+<p><img src="F:\blog\source_posts\image-20230409194342210.png" alt="image-20230409194342210"></p>
+<p><img src="F:\blog\source_posts\image-20230409194443417.png" alt="image-20230409194443417"></p>
+<p><code>添加网域到Google Console</code></p>
+<h5 id="Google-Console"><a href="#Google-Console" class="headerlink" title="Google Console"></a><a target="_blank" rel="noopener" href="https://console.developers.google.com/apis">Google Console</a></h5><p><a target="_blank" rel="noopener" href="https://play.google.com/console">https://play.google.com/console</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/wujiesunlirong/article/details/122173321">google pay 配置sub&#x2F;pub回调_google play怎么设置订阅回调地址_spcof的博客-CSDN博客</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://github.com/zuoyenuandong/zuoyenuandong.github.io">zuoyenuandong</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://github.com/zuoyenuandong/zuoyenuandong.github.io/2023/04/09/%E8%B0%B7%E6%AD%8C%E6%94%AF%E4%BB%98/">https://github.com/zuoyenuandong/zuoyenuandong.github.io/2023/04/09/谷歌支付/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://github.com/zuoyenuandong/zuoyenuandong.github.io" target="_blank">还（huan）</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/zuoyenuandong/zuoyenuandong.github.io/img/cover.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related  no-desc" href="/zuoyenuandong/zuoyenuandong.github.io/2025/07/30/hello-world/" title="Hello World"><img class="cover" src="/zuoyenuandong/zuoyenuandong.github.io/img/cover.jpg" onerror="onerror=null;src='/zuoyenuandong/zuoyenuandong.github.io/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Hello World</div></div></div></a><a class="pagination-related" href="/zuoyenuandong/zuoyenuandong.github.io/2022/10/28/video-03-%E5%89%8D%E7%AB%AF/" title="video-03-前端"><img class="cover" src="/zuoyenuandong/zuoyenuandong.github.io/img/cover.jpg" onerror="onerror=null;src='/zuoyenuandong/zuoyenuandong.github.io/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">video-03-前端</div></div><div class="info-2"><div class="info-item-1">项目搭建</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E9%80%9A%E7%9F%A5"><span class="toc-text">回调通知</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E8%B0%83%E9%85%8D%E7%BD%AE"><span class="toc-text">回调配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Google-Console"><span class="toc-text">Google Console</span></a></li></ol></li></ol></li></ol></li></ol></div></div></div></div></main><footer id="footer" style="background-image: url(/zuoyenuandong/zuoyenuandong.github.io/img/foot.png);"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2022 - 2025 By zuoyenuandong</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.4.3</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/zuoyenuandong/zuoyenuandong.github.io/js/utils.js"></script><script src="/zuoyenuandong/zuoyenuandong.github.io/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/zuoyenuandong/zuoyenuandong.github.io/js/search/local-search.js"></script></div></div></body></html>
